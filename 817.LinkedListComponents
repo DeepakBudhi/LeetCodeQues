@@ -1,0 +1,52 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int numComponents(ListNode* head, vector<int>& nums) {
+        int const1 = 0;
+        int res = 0;
+        int temp = 1;
+        int j = 0;
+        ListNode* tempnode = head;
+        if(head == NULL || nums.size() == 0){
+            return res;
+        }
+        for(tempnode; tempnode!=NULL;tempnode = tempnode->next){
+            int elem = tempnode->val;
+            for(int i = 0;i<nums.size();i++){
+                if(nums[i]==elem){
+                    const1++;
+                    temp = 1;
+                    j = i;
+                    break;
+                }
+                if(i == nums.size()-1){
+                    temp = 0;
+                }
+            }
+                if(const1>=2 && temp==0){
+                    cout<<"In >2"<<endl;
+                    res++;
+                    const1 = 0;
+                }
+                else if(const1 == 1 && temp == 0 ){
+                    cout<<"equal 1"<<endl;
+                    res++;
+                    const1 = 0;
+                }
+            }
+            if(const1 >= 1){
+                res++;
+            }
+            cout<<res<<endl;
+        return res;
+    }
+};
