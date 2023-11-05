@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int s = 0;
+        int e = arr.size() - 1;
+        while(s<=e){
+            int mid = s + (e - s)/2;
+            cout<<mid<< " and " <<arr[mid]<<endl;
+            if(arr[mid+1]<arr[mid] &&  arr[mid]>arr[mid-1]){
+                cout<<"Am I peak "<< arr[mid]<< endl;
+                return mid;
+            }
+            else if(arr[mid]<arr[mid+1]){
+                cout<< "Let's go to right "<<mid<<endl;
+                s = mid + 1;
+            }
+            else if(arr[mid]>arr[mid+1]){
+                cout<<"Let's go to left "<<mid<<endl;
+                e = mid -1;
+            }
+        }
+        return -1;
+    }
+};
